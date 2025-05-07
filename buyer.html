@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Plants</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* 3 ta kore row te */
+        .plant-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; /* majer sapce item er moddhe */
+            padding: 20px;
+        }
+
+        .plant-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: white; /* background for plant box */
+            color: #333; /* Set text color */
+        }
+
+        .plant-item h3 {
+            margin: 10px 0;
+            color: #333; /* text color */
+            font-size: 18px;
+        }
+
+        .plant-item p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333; /*  text color for price */
+        }
+
+        /* Optional: Add hover effect to the plant boxes */
+        .plant-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5;
+        }
+
+        /* Make the grid responsive */
+        @media (max-width: 768px) {
+            .plant-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .plant-container {
+                grid-template-columns: 1fr; /* 1 column on very small screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Available Plants</h1>
+
+    <div class="plant-container">
+        {% for plant in plants %}
+            <div class="plant-item">
+                <h3>{{ plant.name }}</h3>
+                <p>৳{{ plant.price }}</p> <!-- Displaying price in Bangladeshi Taka -->
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Interface</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .success-message {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Seller Interface</h1>
+
+    <!-- Show success message if added successfully -->
+    {% if success_message %}
+        <p class="success-message">{{ success_message }}</p>
+    {% endif %}
+
+    <form action="/add-plant" method="post">
+        <label for="plant_name">Plant Name:</label>
+        <input type="text" id="plant_name" name="plant_name" required><br><br>
+
+        <label for="plant_price">Plant Price:</label>
+        <input type="number" id="plant_price" name="plant_price" required><br><br>
+
+        <input type="submit" value="Add Plant">
+    </form>
+</body>
+</html>
