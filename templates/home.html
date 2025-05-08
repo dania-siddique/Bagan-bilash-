@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bagan Bilash - Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('/static/image1.webp') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+        }
+        h1 {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px 40px;
+            border-radius: 12px;
+        }
+        .button-container {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 80%;
+            max-width: 500px;
+        }
+        a.button {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        a.button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Bagan Bilash</h1>
+    <div class="button-container">
+        <a class="button" href="/feature1">1. Create Profile</a>
+        <a class="button" href="/feature2">2. Planting Guide</a>
+        <a class="button" href="/feature3">3. Chatbox</a>
+        <a class="button" href="/feature4">4. Set Reminder</a>
+        <a class="button" href="https://github.com/dania-siddique/Bagan-bilash-/tree/Mahidur" target="_blank">5. Buyer-Seller</a>
+        <a class="button" href="https://github.com/dania-siddique/Bagan-bilash-/tree/akash" target="_blank">6. Transaction</a>
+        <a class="button" href="https://github.com/dania-siddique/Bagan-bilash-/tree/Mrittika" target="_blank">7. Delivery</a>
+        <a class="button" href="#">8. Coming Soon...</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!-- templates/how_to_plant.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Plant</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Planting Guide</h1>
+            <p class="subtitle">Expert tips for your gardening journey</p>
+        </div>
+
+        <div class="tips-container">
+            <div class="tip-card indoor-tips">
+                <h2>🌿 Indoor Planting Tips</h2>
+                <ul>
+                    <li>Choose the right spot</li>
+                    <li>Use quality soil</li>
+                    <li>Provide proper lighting</li>
+                    <li>Water mindfully</li>
+                    <li>Maintain humidity</li>
+                </ul>
+            </div>
+
+            <div class="tip-card outdoor-tips">
+                <h2>🌻 Outdoor Planting Tips</h2>
+                <ul>
+                    <li>Select a suitable location</li>
+                    <li>Prepare the soil</li>
+                    <li>Plant at the right depth</li>
+                    <li>Water regularly</li>
+                    <li>Protect from pests</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <h3>For your specific plant:</h3>
+            <div class="search-box">
+                <input type="text" id="plant-search" placeholder="Enter plant name (e.g., snake plant, roses)">
+                <button onclick="searchPlant()">Get AI Care Guide</button>
+            </div>
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Consulting our AI gardening expert...</p>
+            </div>
+            <div id="result-container" class="result-container"></div>
+        </div>
+    </div>
+
+    <script>
+        async function searchPlant() {
+            const plantName = document.getElementById('plant-search').value.trim();
+            if (!plantName) {
+                alert('Please enter a plant name');
+                return;
+            }
+
+            const loading = document.getElementById('loading');
+            const resultContainer = document.getElementById('result-container');
+            
+            // Show loading indicator
+            loading.style.display = 'block';
+            resultContainer.innerHTML = '';
+            
+            try {
+                const response = await fetch(`/plant-search?plant_name=${encodeURIComponent(plantName)}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultContainer.innerHTML = `
+                        <div class="ai-result">
+                            <h3>AI Care Guide for ${plantName}</h3>
+                            <div class="ai-content">${data.result}</div>
+                        </div>
+                    `;
+                } else {
+                    resultContainer.innerHTML = `
+                        <div class="error-message">
+                            <p>Sorry, we couldn't find information about ${plantName}.</p>
+                            <p>Error: ${data.error || 'Unknown error'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultContainer.innerHTML = `
+                    <div class="error-message">
+                        <p>Failed to connect to the AI service. Please try again later.</p>
+                    </div>
+                `;
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+        
+        // Allow Enter key to trigger search
+        document.getElementById('plant-search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchPlant();
+            }
+        });
+    </script>
+</body>
+</html>

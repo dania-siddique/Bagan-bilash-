@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Care Reminders</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌿 Plant Watering Reminders</h1>
+        
+        <form id="reminderForm">
+            <input type="text" id="plantName" placeholder="Plant name" required>
+            <input type="number" id="days" placeholder="Water every X days" min="1" required>
+            <button type="submit">Set Reminder</button>
+        </form>
+        
+        <div id="remindersList"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('reminderForm');
+        const remindersList = document.getElementById('remindersList');
+        
+        // Load reminders on page load
+        loadReminders();
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const response = await fetch('/add-reminder/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `plant_name=${encodeURIComponent(document.getElementById('plantName').value)}&days=${encodeURIComponent(document.getElementById('days').value)}`
+            });
+            
+            const result = await response.json();
+            alert(result.message);
+            loadReminders();
+        });
+        
+        async function loadReminders() {
+            const response = await fetch('/get-reminders/');
+            const reminders = await response.json();
+            
+            remindersList.innerHTML = '<h2>Your Reminders</h2>';
+            
+            if (reminders.length === 0) {
+                remindersList.innerHTML += '<p>No reminders set yet</p>';
+            } else {
+                reminders.forEach(reminder => {
+                    remindersList.innerHTML += `
+                        <div class="reminder">
+                            <p>💧 Water <strong>${reminder.plant}</strong> every ${reminder.days} days</p>
+                        </div>
+                    `;
+                });
+            }
+        }
+    </script>
+</body>
+</html>

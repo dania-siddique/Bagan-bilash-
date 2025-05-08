@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-4">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="bg-indigo-700 p-4 text-white">
+                <h1 class="text-2xl font-bold">🌱 Plant Care Admin</h1>
+                <p class="text-sm opacity-80">Active support dashboard</p>
+            </div>
+
+            <div class="flex">
+                <!-- User List -->
+                <div class="w-1/4 border-r border-gray-200">
+                    <div class="p-4 bg-gray-50">
+                        <h2 class="font-semibold text-gray-700 mb-2">Active Chats</h2>
+                        <ul id="user-list" class="space-y-2">
+                            <!-- Users appear here -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chat Area -->
+                <div class="flex-1 flex flex-col" style="height: 600px;">
+                    <div id="admin-chat-box" class="flex-1 p-4 overflow-y-auto space-y-3">
+                        <!-- Messages appear here -->
+                    </div>
+
+                    <div class="p-4 border-t border-gray-200 bg-gray-50">
+                        <div class="flex gap-2">
+                            <input id="admin-message" type="text" placeholder="Type your reply..."
+                                   class="flex-1 px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <input id="current-user" type="hidden">
+                            <button onclick="sendAdminMessage()"
+                                    class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>

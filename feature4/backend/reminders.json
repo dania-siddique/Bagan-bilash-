@@ -1,0 +1,18 @@
+[
+  {
+    "plant": "rose",
+    "days": 3
+  },
+  {
+    "plant": "dalia",
+    "days": 7
+  },
+  {
+    "plant": "tulip",
+    "days": 8
+  },
+  {
+    "plant": "tulip",
+    "days": 8
+  }
+]
